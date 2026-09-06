@@ -5,7 +5,7 @@ from cnnClassifier.components.training import Training
 
 
 
-class FineTuning:
+class FineTuning(Training):
     def __init__(self, config: FineTuningConfig):
         self.config = config
 
@@ -27,7 +27,7 @@ class FineTuning:
             layer.trainable = True
 
         model.compile(
-            optimizer=keras.optimizers.Adam(learning_rate=self.config.fine_tuned_learning_rate),
+            optimizer=keras.optimizers.Adam(learning_rate=self.config.fine_tune_learning_rate),
             loss=keras.losses.categorical_crossentropy,
             metrics=["accuracy"]
         )
@@ -41,7 +41,7 @@ class FineTuning:
 
         model = self._freeze_unfreeze(model)
 
-        Training.train_valid_test_generator()
+        self.train_valid_test_generator()
 
         model.fit(
             self.train_generator,
