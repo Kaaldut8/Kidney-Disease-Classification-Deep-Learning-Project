@@ -1,0 +1,34 @@
+artifacts_root: artifacts
+
+
+
+data_ingestion:
+  root_dir: "artifacts/data_ingestion"
+  source_URL: "nazmul0087/ct-kidney-dataset-normal-cyst-tumor-and-stone"
+  local_data_file: "artifacts/data_ingestion"
+
+
+
+data_transformation:
+  root_dir: "artifacts/data_transformation"
+  source_dir: "D:/Projects/Kidney-Disease-Classification-Deep-Learning-Project/artifacts/data_ingestion/CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone/CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone"
+
+
+
+prepare_base_model:
+  root_dir: "artifacts/prepare_base_model"
+  model_path: "artifacts/prepare_base_model/model.keras"
+
+
+
+prepare_callbacks:
+  root_dir: artifacts/prepare_callbacks
+  tensorboard_root_log_dir: artifacts/prepare_callbacks/tensorboard_log_dir
+  checkpoint_model_filepath: artifacts/prepare_callbacks/checkpoint_dir/model.keras
+
+
+
+training:
+  root_dir: artifacts/training
+  trained_model_path: artifacts/training/stage1_model.keras
+  fine_tuned_model_path: artifacts/training/stage2_model.keras

@@ -1,4 +1,5 @@
-tensorflow
+keras
+tensorboard
 pandas
 dvc
 mlflow
@@ -15,5 +16,5 @@ types-PyYAML
 scipy
 Flask
 Flask-Cors
-gdown
+kagglehub
 -e .
