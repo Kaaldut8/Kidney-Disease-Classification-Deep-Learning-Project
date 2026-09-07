@@ -14,8 +14,7 @@ class PrepareBaseModel:
         base_model = keras.applications.vgg16.VGG16(
             include_top=self.config.params_include_top,
             weights=self.config.params_weights,
-            input_shape=self.config.params_image_size,
-            name="vgg16"
+            input_shape=self.config.params_image_size
         )
         
         return base_model

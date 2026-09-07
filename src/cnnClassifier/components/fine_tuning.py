@@ -21,9 +21,9 @@ class FineTuning(Training):
     def _freeze_unfreeze(self, model):
         model.trainable = False
 
-        base_model = model.get_layer("vgg16")
+        conv_layer = [layer for layer in model.layers if layer.name.startswith("conv")]
 
-        for layer in base_model.layers[-self.config.fine_tune_layers:]:
+        for layer in conv_layer[-self.config.fine_tune_layers:]:
             layer.trainable = True
 
         model.compile(
