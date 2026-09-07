@@ -42,4 +42,4 @@ class ModelEvaluation:
 
     def save_score(self):
         scores = {"loss": self.score[0], "accuracy":self.score[1]}
-        save_json(path=os.path.join(self.config.root_dir, "scores.json"), data=scores)
+        save_json(path=Path(os.path.join(self.config.root_dir, "scores.json")), data=scores)
