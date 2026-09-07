@@ -11,7 +11,7 @@ data_ingestion:
 
 data_transformation:
   root_dir: "artifacts/data_transformation"
-  source_dir: "D:/Projects/Kidney-Disease-Classification-Deep-Learning-Project/artifacts/data_ingestion/CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone/CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone"
+  source_dir: "artifacts/data_ingestion/CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone/CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone"
 
 
 
