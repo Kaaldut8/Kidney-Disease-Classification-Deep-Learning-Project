@@ -32,3 +32,9 @@ training:
   root_dir: artifacts/training
   trained_model_path: artifacts/training/stage1_model.keras
   fine_tuned_model_path: artifacts/training/stage2_model.keras
+
+
+
+model_evaluation:
+  root_dir: artifacts/model_evaluation
+  

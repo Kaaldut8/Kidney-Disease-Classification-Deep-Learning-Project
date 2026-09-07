@@ -15,7 +15,7 @@ class Training:
         return model
 
 
-    def train_valid_test_generator(self):
+    def train_valid_generator(self):
         datagen = keras.src.legacy.preprocessing.image.ImageDataGenerator(
             preprocessing_function=keras.applications.vgg16.preprocess_input
         )
@@ -48,20 +48,12 @@ class Training:
             shuffle=False
         )
 
-        self.test_generator = datagen.flow_from_directory(
-            os.path.join(self.config.training_data, "test"),
-            target_size=self.config.params_image_size[:2],
-            batch_size=self.config.params_batch_size,
-            class_mode="categorical",
-            shuffle=False
-        )
-
 
 
     def train(self, callbacks_list: list):
         model = self.get_model()
 
-        self.train_valid_test_generator()
+        self.train_valid_generator()
 
         model.fit(
             self.train_generator,

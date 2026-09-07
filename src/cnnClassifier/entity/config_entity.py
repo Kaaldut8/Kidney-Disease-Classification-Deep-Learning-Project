@@ -62,3 +62,14 @@ class FineTuningConfig:
     params_image_size: list
     fine_tune_layers: int
     fine_tune_learning_rate: float
+
+
+
+@dataclass(frozen=True)
+class ModelEvaluationConfig:
+    root_dir: Path
+    model_path: Path
+    training_data: Path
+    all_params: dict
+    params_image_size: list
+    params_batch_size: int

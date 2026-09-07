@@ -41,7 +41,7 @@ class FineTuning(Training):
 
         model = self._freeze_unfreeze(model)
 
-        self.train_valid_test_generator()
+        self.train_valid_generator()
 
         model.fit(
             self.train_generator,

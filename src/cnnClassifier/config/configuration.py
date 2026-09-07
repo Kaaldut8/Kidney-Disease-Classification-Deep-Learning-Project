@@ -1,7 +1,7 @@
 import os
 from cnnClassifier.constants import *
 from cnnClassifier.utils.common import read_yaml, create_directories
-from cnnClassifier.entity.config_entity import DataIngestionConfig, DataTransformationConfig, PrepareBaseModelConfig, PrepareCallbacksConfig, TrainingConfig, FineTuningConfig
+from cnnClassifier.entity.config_entity import DataIngestionConfig, DataTransformationConfig, PrepareBaseModelConfig, PrepareCallbacksConfig, TrainingConfig, FineTuningConfig, ModelEvaluationConfig
 
 
 
@@ -123,3 +123,24 @@ class ConfigurationManager:
             )
     
             return fine_tuning_config
+
+
+
+    def get_model_evaluation_config(self) -> ModelEvaluationConfig:
+            config = self.config.model_evaluation
+            training = self.config.training
+            training_data = self.config.data_transformation
+            params = self.params
+    
+            create_directories([config.root_dir])
+    
+            model_evaluation_config = ModelEvaluationConfig(
+                root_dir=config.root_dir,
+                model_path=training.fine_tuned_model_path,
+                training_data=training_data.root_dir,
+                all_params=params,
+                params_image_size=params.IMAGE_SIZE,
+                params_batch_size=params.BATCH_SIZE
+            )
+    
+            return model_evaluation_config
