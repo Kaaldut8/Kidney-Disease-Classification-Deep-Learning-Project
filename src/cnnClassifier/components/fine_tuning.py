@@ -12,7 +12,7 @@ class FineTuning(Training):
 
 
     def get_model(self):
-        model = keras.models.load_model(self.config.trained_model_path)
+        model = keras.models.load_model(self.config.trained_model_path, compile=False)
         return model
 
 
