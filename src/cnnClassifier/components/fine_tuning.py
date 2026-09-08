@@ -17,14 +17,14 @@ class FineTuning(Training):
 
 
 
-    @staticmethod
     def _freeze_unfreeze(self, model):
-        model.trainable = False
-
-        conv_layer = [layer for layer in model.layers if layer.name.startswith("conv")]
+        conv_layer = [layer for layer in model.layers if layer.name.startswith("block")]
 
         for layer in conv_layer[-self.config.fine_tune_layers:]:
             layer.trainable = True
+
+        for layer in model.layers:
+            print(layer.name, layer.trainable)
 
         model.compile(
             optimizer=keras.optimizers.Adam(learning_rate=self.config.fine_tune_learning_rate),
@@ -32,6 +32,7 @@ class FineTuning(Training):
             metrics=["accuracy"]
         )
 
+        model.summary()
         return model
 
 

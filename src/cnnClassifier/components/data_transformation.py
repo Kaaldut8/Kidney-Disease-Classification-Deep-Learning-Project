@@ -26,7 +26,8 @@ class DataTransformation:
                 destination = os.path.join(self.config.root_dir, split, class_name)
                 os.makedirs(destination, exist_ok=True)
                 for image in split_images:
-                    shutil.copy2(
-                        os.path.join(class_path, image),
-                        os.path.join(destination, image)
-                    )
+                    if not os.path.exists(os.path.join(destination, image)):
+                        shutil.copy2(
+                            os.path.join(class_path, image),
+                            os.path.join(destination, image)
+                        )
