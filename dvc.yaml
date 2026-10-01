@@ -69,8 +69,6 @@ stages:
     params:
       - IMAGE_SIZE
       - BATCH_SIZE
-    outs:
-    - artifacts/model_evaluation
     metrics:
     - artifacts/model_evaluation/scores.json:
         cache: false
