@@ -1,5 +1,4 @@
 import kagglehub
-import os
 from cnnClassifier import logger
 from cnnClassifier.entity.config_entity import DataIngestionConfig
 
