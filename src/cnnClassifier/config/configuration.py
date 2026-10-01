@@ -136,7 +136,7 @@ class ConfigurationManager:
     
             model_evaluation_config = ModelEvaluationConfig(
                 root_dir=config.root_dir,
-                trained_model_path=training.fine_tuned_model_path,
+                trained_model_path=training.trained_model_path,
                 fine_tuned_model_path=training.fine_tuned_model_path,
                 training_data=training_data.root_dir,
                 all_params=params,
