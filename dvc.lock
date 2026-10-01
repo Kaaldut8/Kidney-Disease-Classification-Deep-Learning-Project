@@ -1,0 +1,69 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/cnnClassifier/pipeline/stage_01_data_ingestion.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: e26f6f8d742fb235ee59c864c54dfd97
+      size: 1009
+    - path: src/cnnClassifier/pipeline/stage_01_data_ingestion.py
+      hash: md5
+      md5: 41a140499ddc64a182e94e6964facf37
+      size: 867
+    outs:
+    - path: artifacts/data_ingestion/
+      hash: md5
+      md5: 28874b40fa92ae46227d57809cde0bfa.dir
+      size: 1663086237
+      nfiles: 12448
+  data_transformation:
+    cmd: python src/cnnClassifier/pipeline/stage_02_data_transformation.py
+    deps:
+    - path: 
+        artifacts/data_ingestion/CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone/CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone
+      hash: md5
+      md5: 480f02db6967e2017d804fca0430c1a4.dir
+      size: 1661580918
+      nfiles: 12446
+    - path: config/config.yaml
+      hash: md5
+      md5: e26f6f8d742fb235ee59c864c54dfd97
+      size: 1009
+    - path: src/cnnClassifier/pipeline/stage_02_data_transformation.py
+      hash: md5
+      md5: 789e872f6c6b584b2b5857a04710b9bf
+      size: 923
+    outs:
+    - path: artifacts/data_transformation
+      hash: md5
+      md5: 55e0fe83a6d5dc54b663f021e3b33368.dir
+      size: 1661580918
+      nfiles: 12446
+  prepare_base_model:
+    cmd: python src/cnnClassifier/pipeline/stage_03_prepare_base_model.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: e26f6f8d742fb235ee59c864c54dfd97
+      size: 1009
+    - path: src/cnnClassifier/pipeline/stage_03_prepare_base_model.py
+      hash: md5
+      md5: 59cf6971a6bc2ae177126c14e2e95284
+      size: 905
+    params:
+      params.yaml:
+        CLASSES: 4
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+        INCLUDE_TOP: false
+        LEARNING_RATE: 1e-05
+        WEIGHTS: imagenet
+    outs:
+    - path: artifacts/prepare_base_model
+      hash: md5
+      md5: 6c58f947867481891056e70858f06aa2.dir
+      size: 59343163
+      nfiles: 1

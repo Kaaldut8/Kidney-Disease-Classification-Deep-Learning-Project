@@ -1,0 +1,74 @@
+stages:
+  data_ingestion:
+    cmd: python src/cnnClassifier/pipeline/stage_01_data_ingestion.py
+    deps:
+      - src/cnnClassifier/pipeline/stage_01_data_ingestion.py
+      - config/config.yaml
+    outs:
+      - artifacts/data_ingestion/
+
+
+
+  data_transformation:
+    cmd: python src/cnnClassifier/pipeline/stage_02_data_transformation.py
+    deps:
+      - src/cnnClassifier/pipeline/stage_02_data_transformation.py
+      - config/config.yaml
+      - artifacts/data_ingestion/CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone/CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone
+    outs:
+      - artifacts/data_transformation
+
+
+
+  prepare_base_model:
+    cmd: python src/cnnClassifier/pipeline/stage_03_prepare_base_model.py
+    deps:
+      - src/cnnClassifier/pipeline/stage_03_prepare_base_model.py
+      - config/config.yaml
+    params:
+      - IMAGE_SIZE
+      - INCLUDE_TOP
+      - CLASSES
+      - WEIGHTS
+      - LEARNING_RATE
+    outs:
+      - artifacts/prepare_base_model
+
+
+
+  training:
+    cmd: python src/cnnClassifier/pipeline/stage_04_training.py
+    deps:
+      - src/cnnClassifier/pipeline/stage_04_training.py
+      - src/cnnClassifier/components/prepare_callbacks.py
+      - src/cnnClassifier/components/fine_tuning.py
+      - config/config.yaml
+      - artifacts/data_transformation
+      - artifacts/prepare_base_model
+    params:
+      - IMAGE_SIZE
+      - EPOCHS
+      - BATCH_SIZE
+      - AUGMENTATION
+      - FINE_TUNE_EPOCHS
+      - FINE_TUNE_LAYERS
+      - FINE_TUNE_LEARNING_RATE
+    outs:
+      - artifacts/training/stage1_model.keras
+      - artifacts/training/stage2_model.keras
+
+
+
+  evaluation:
+    cmd: python src/cnnClassifier/pipeline/stage_05_evaluation.py
+    deps:
+      - src/cnnClassifier/pipeline/stage_05_evaluation.py
+      - config/config.yaml
+      - artifacts/data_transformation
+      - artifacts/training/model.keras
+    params:
+      - IMAGE_SIZE
+      - BATCH_SIZE
+    metrics:
+    - scores.json:
+        cache: false
