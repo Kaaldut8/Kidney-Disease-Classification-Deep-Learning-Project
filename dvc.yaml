@@ -60,9 +60,9 @@ stages:
 
 
   evaluation:
-    cmd: python src/cnnClassifier/pipeline/stage_05_evaluation.py
+    cmd: python src/cnnClassifier/pipeline/stage_05_model_evaluation.py
     deps:
-      - src/cnnClassifier/pipeline/stage_05_evaluation.py
+      - src/cnnClassifier/pipeline/stage_05_model_evaluation.py
       - config/config.yaml
       - artifacts/data_transformation
       - artifacts/training/stage1_model.keras
