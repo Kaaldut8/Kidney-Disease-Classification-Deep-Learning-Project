@@ -1,3 +1,4 @@
+import json
 import keras
 from cnnClassifier.config.configuration import ModelEvaluationConfig
 import os
@@ -48,5 +49,16 @@ class ModelEvaluation:
 
 
     def save_score(self):
-        scores = {"loss": self.score[0], "accuracy":self.score[1]}
-        save_json(path=Path(os.path.join(self.config.root_dir, "scores.json")), data=scores)
+        scores = {"loss": self.score[0], "accuracy": self.score[1]}
+
+        score_path = Path(os.path.join(self.config.root_dir, "scores.json"))
+
+        if score_path.exists():
+            with open(score_path, "r") as f:
+                all_scores = json.load(f)
+        else:
+            all_scores = []
+
+        all_scores.append(scores)
+
+        save_json(path=score_path, data=all_scores)
