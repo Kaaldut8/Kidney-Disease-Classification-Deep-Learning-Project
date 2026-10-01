@@ -72,5 +72,5 @@ stages:
     outs:
     - artifacts/model_evaluation
     metrics:
-    - scores.json:
+    - artifacts/model_evaluation/scores.json:
         cache: false
