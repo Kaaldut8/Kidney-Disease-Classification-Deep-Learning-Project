@@ -48,7 +48,7 @@ class ModelEvaluation:
 
 
 
-    def save_score(self):
+    def save_score(self, model_name):
         scores = {"loss": self.score[0], "accuracy": self.score[1]}
 
         score_path = Path(os.path.join(self.config.root_dir, "scores.json"))
@@ -57,8 +57,8 @@ class ModelEvaluation:
             with open(score_path, "r") as f:
                 all_scores = json.load(f)
         else:
-            all_scores = []
+            all_scores = {}
 
-        all_scores.append(scores)
+        all_scores[model_name] = scores
 
         save_json(path=score_path, data=all_scores)
