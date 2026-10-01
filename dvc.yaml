@@ -50,11 +50,28 @@ stages:
       - EPOCHS
       - BATCH_SIZE
       - AUGMENTATION
+    outs:
+      - artifacts/training/stage1_model.keras
+
+
+
+  fine_tuning:
+    cmd: python src/cnnClassifier/pipeline/stage_04_fine_tuning.py
+    deps:
+      - src/cnnClassifier/pipeline/stage_04_fine_tuning.py
+      - src/cnnClassifier/components/prepare_callbacks.py
+      - src/cnnClassifier/components/fine_tuning.py
+      - config/config.yaml
+      - artifacts/data_transformation
+      - artifacts/training
+    params:
+      - IMAGE_SIZE
+      - BATCH_SIZE
+      - AUGMENTATION
       - FINE_TUNE_EPOCHS
       - FINE_TUNE_LAYERS
       - FINE_TUNE_LEARNING_RATE
     outs:
-      - artifacts/training/stage1_model.keras
       - artifacts/training/stage2_model.keras
 
 
