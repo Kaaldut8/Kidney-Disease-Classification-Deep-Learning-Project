@@ -33,8 +33,15 @@ class ModelEvaluation:
 
 
 
-    def evaluation(self):
-        self.model = self.load_model(self.config.model_path)
+    def evaluation_trained(self):
+        self.model = self.load_model(self.config.trained_model_path)
+        self._test_generator()
+        self.score = self.model.evaluate(self.test_generator)
+
+
+
+    def evaluation_fine_tuned(self):
+        self.model = self.load_model(self.config.fine_tuned_model_path)
         self._test_generator()
         self.score = self.model.evaluate(self.test_generator)
 

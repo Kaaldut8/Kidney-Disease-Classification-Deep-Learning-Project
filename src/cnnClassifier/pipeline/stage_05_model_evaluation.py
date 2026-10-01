@@ -16,7 +16,9 @@ class ModelEvaluationPipeline:
         config = ConfigurationManager()
         model_evaluation_config = config.get_model_evaluation_config()
         model_evaluation = ModelEvaluation(config=model_evaluation_config)
-        model_evaluation.evaluation()
+        model_evaluation.evaluation_trained()
+        model_evaluation.save_score()
+        model_evaluation.evaluation_fine_tuned()
         model_evaluation.save_score()
 
 

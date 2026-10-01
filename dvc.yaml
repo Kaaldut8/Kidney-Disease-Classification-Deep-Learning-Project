@@ -65,10 +65,12 @@ stages:
       - src/cnnClassifier/pipeline/stage_05_evaluation.py
       - config/config.yaml
       - artifacts/data_transformation
-      - artifacts/training/model.keras
+      - artifacts/training/stage1_model.keras
     params:
       - IMAGE_SIZE
       - BATCH_SIZE
+    outs:
+    - artifacts/model_evaluation
     metrics:
     - scores.json:
         cache: false

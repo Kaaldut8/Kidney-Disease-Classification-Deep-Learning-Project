@@ -1,7 +1,7 @@
 from cnnClassifier import logger
 from cnnClassifier.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 from cnnClassifier.pipeline.stage_02_data_transformation import DataTransformationTrainingPipeline
-from cnnClassifier.pipeline.stage_03_prepapre_base_model import PrepareBaseModelTrainingPipeline
+from cnnClassifier.pipeline.stage_03_prepare_base_model import PrepareBaseModelTrainingPipeline
 from cnnClassifier.pipeline.stage_04_training import ModelTrainingPipeline
 from cnnClassifier.pipeline.stage_05_model_evaluation import ModelEvaluationPipeline
 

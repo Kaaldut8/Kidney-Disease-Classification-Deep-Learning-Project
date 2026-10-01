@@ -68,7 +68,8 @@ class FineTuningConfig:
 @dataclass(frozen=True)
 class ModelEvaluationConfig:
     root_dir: Path
-    model_path: Path
+    trained_model_path: Path
+    fine_tuned_model_path: Path
     training_data: Path
     all_params: dict
     params_image_size: list
