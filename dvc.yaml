@@ -63,7 +63,7 @@ stages:
       - src/cnnClassifier/components/fine_tuning.py
       - config/config.yaml
       - artifacts/data_transformation
-      - artifacts/training
+      - artifacts/training/stage1_model.keras
     params:
       - IMAGE_SIZE
       - BATCH_SIZE
